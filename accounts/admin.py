@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from .models import Membership, Organization, User
 
 
 class UserAdmin(BaseUserAdmin):
@@ -35,3 +35,5 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Organization)
+admin.site.register(Membership)

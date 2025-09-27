@@ -1,7 +1,19 @@
 from rest_framework.views import APIView
-from rest_framework import status, permissions
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from accounts.models import Organization
+from accounts.serializers import OrganizationSerializer
+
+
+class OrganizationCreateView(generics.ListCreateAPIView):
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class LogoutView(APIView):

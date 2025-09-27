@@ -4,11 +4,16 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from accounts.views import LogoutView, TestView
+from accounts.views import LogoutView, OrganizationCreateView, TestView
 
 urlpatterns = [
     path("login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("test", TestView.as_view(), name="Test if authenticated"),
+    path(
+        "organizations/",
+        OrganizationCreateView.as_view(),
+        name="organization_list_create",
+    ),
 ]
